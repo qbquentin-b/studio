@@ -1,118 +1,169 @@
-import { Code, Palette, Megaphone, Search } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 export default function Services() {
-  const services = [
+  const pricingPlans = [
     {
-      icon: Palette,
-      title: 'Design Web',
-      description:
-        'Création de designs modernes et intuitifs qui captivent vos utilisateurs et renforcent votre identité de marque.',
+      name: 'Starter',
+      price: '2,999',
+      description: 'Parfait pour débuter votre présence digitale',
       features: [
-        'Design UI/UX',
-        'Prototypage interactif',
-        'Design système',
-        'Identité visuelle',
+        'Site web vitrine (5 pages)',
+        'Design moderne & responsive',
+        'Intégration formulaire contact',
+        'Optimisation SEO basique',
+        'Analytics & monitoring',
+        'Support email',
       ],
+      cta: 'Commencer',
     },
     {
-      icon: Code,
-      title: 'Développement',
-      description:
-        'Développement de sites web et applications performants avec les dernières technologies pour une expérience utilisateur optimale.',
+      name: 'Professionnel',
+      price: '7,999',
+      description: 'La solution complète pour une présence digitale forte',
       features: [
-        'Sites web sur mesure',
-        'Applications web',
-        'E-commerce',
-        'Maintenance & support',
+        'Site web complet (15 pages)',
+        'Design sur mesure & prototypage',
+        'Blog & système de contenu',
+        'Intégration CRM',
+        'Optimisation SEO avancée',
+        'Stratégie marketing digital',
+        'Analytics détaillées',
+        'Support prioritaire',
+        'Formation & documentation',
       ],
+      cta: 'Choisir ce pack',
+      featured: true,
     },
     {
-      icon: Megaphone,
-      title: 'Marketing Digital',
-      description:
-        'Stratégies marketing complètes pour augmenter votre visibilité en ligne et atteindre vos objectifs commerciaux.',
+      name: 'Enterprise',
+      price: 'Sur devis',
+      description: 'Solutions personnalisées pour les grands projets',
       features: [
-        'Stratégie de contenu',
-        'Réseaux sociaux',
-        'Email marketing',
-        'Analyse de données',
+        'Plateforme web sur mesure',
+        'Architecture personnalisée',
+        'Intégrations multiples',
+        'Application mobile',
+        'Système CMS avancé',
+        'Stratégie digitale complète',
+        'Support 24/7',
+        'Maintenance continue',
+        'Équipe dédiée',
       ],
-    },
-    {
-      icon: Search,
-      title: 'SEO',
-      description:
-        'Optimisation pour les moteurs de recherche afin d\'améliorer votre positionnement et générer du trafic qualifié.',
-      features: [
-        'Audit SEO complet',
-        'Optimisation on-page',
-        'Link building',
-        'SEO local',
-      ],
+      cta: 'Nous contacter',
     },
   ];
 
   return (
-    <div>
-      <section className="bg-gradient-to-b from-gray-50 to-white py-20 sm:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 tracking-tight leading-tight">
-              Nos Services
+    <div className="bg-white">
+      <section className="relative min-h-[80vh] flex items-center py-20 sm:py-32">
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-50"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black text-gray-900 tracking-tight leading-none mb-8">
+              Nos Tarifs
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed">
-              Des solutions complètes pour propulser votre présence digitale
+            <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
+              Des solutions pour tous les budgets et besoins. Choisissez le pack qui correspond à vos objectifs.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-2xl border border-gray-100 hover:border-gray-200 transition-all duration-200 hover:shadow-lg"
-                >
-                  <div className="inline-flex items-center justify-center w-14 h-14 bg-gray-900 rounded-xl mb-6">
-                    <Icon className="h-7 w-7 text-white" />
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center lg:items-stretch">
+            {pricingPlans.map((plan, index) => (
+              <div
+                key={index}
+                className={`relative rounded-3xl transition-all duration-300 ${
+                  plan.featured
+                    ? 'lg:scale-105 lg:shadow-2xl ring-2 ring-gray-900'
+                    : 'hover:shadow-xl'
+                } ${
+                  plan.featured
+                    ? 'bg-gray-900 text-white'
+                    : 'bg-white border border-gray-200 hover:border-gray-300'
+                }`}
+              >
+                {plan.featured && (
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                    <span className="inline-block px-4 py-1 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-sm font-bold rounded-full">
+                      PLUS POPULAIRE
+                    </span>
                   </div>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-4">
-                    {service.title}
+                )}
+
+                <div className="p-8 sm:p-10">
+                  <h3 className={`text-3xl font-black mb-2 ${
+                    plan.featured ? 'text-white' : 'text-gray-900'
+                  }`}>
+                    {plan.name}
                   </h3>
-                  <p className="text-gray-600 leading-relaxed mb-6">
-                    {service.description}
+                  <p className={`text-lg mb-8 ${
+                    plan.featured ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
+                    {plan.description}
                   </p>
-                  <ul className="space-y-3">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-gray-700">
-                        <span className="w-1.5 h-1.5 bg-gray-900 rounded-full mr-3"></span>
-                        {feature}
-                      </li>
+
+                  <div className="mb-8">
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className={`text-5xl font-black ${
+                        plan.featured ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        {plan.price}
+                      </span>
+                      {plan.price !== 'Sur devis' && (
+                        <span className={plan.featured ? 'text-gray-400' : 'text-gray-600'}>
+                          euros
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  <Link
+                    href="/contact"
+                    className={`w-full inline-flex items-center justify-center px-6 py-4 rounded-2xl font-bold text-lg transition-all duration-200 group mb-10 ${
+                      plan.featured
+                        ? 'bg-white text-gray-900 hover:bg-gray-100'
+                        : 'bg-gray-900 text-white hover:bg-gray-800'
+                    }`}
+                  >
+                    {plan.cta}
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+
+                  <div className="space-y-4">
+                    {plan.features.map((feature, idx) => (
+                      <div key={idx} className="flex items-start gap-3">
+                        <Check className={`h-5 w-5 mt-0.5 flex-shrink-0 ${
+                          plan.featured ? 'text-orange-400' : 'text-gray-900'
+                        }`} />
+                        <span className={plan.featured ? 'text-gray-200' : 'text-gray-700'}>
+                          {feature}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className={`py-20 sm:py-32 ${true ? 'bg-gray-50' : 'bg-white'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-              Prêt à démarrer votre projet ?
+            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-8">
+              Des questions ?
             </h2>
-            <p className="text-lg text-gray-600 mb-10">
-              Contactez-nous pour discuter de vos besoins et découvrir comment
-              nous pouvons vous aider.
+            <p className="text-xl text-gray-600 mb-12 leading-relaxed">
+              Contactez-nous pour discuter de votre projet et trouver la solution
+              qui correspond parfaitement à vos besoins.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center px-8 py-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors duration-200 font-medium"
+              className="inline-flex items-center justify-center px-8 py-5 bg-gray-900 text-white rounded-2xl hover:bg-gray-800 transition-all duration-200 font-bold text-lg group"
             >
-              Contactez-nous
+              Demander une consultation
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
